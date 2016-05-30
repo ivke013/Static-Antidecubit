@@ -1,7 +1,7 @@
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 
 require_once 'vendor/autoload.php';
@@ -15,7 +15,6 @@ $template = new Twig_Environment($loader, array(
     'auto_reload' => true
 ));
 $template->addExtension(new Twig_Extensions_Extension_I18n());
-echo $template->render('home.twig');
 
 
 //// Front controller
@@ -24,16 +23,32 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch($path)
 {
-    case '/about-us':
-        echo $template->render('about_us.twig');
+    case '/':
+        echo $template->render('pocetna.twig');
         break;
-    case '/contact':
-        echo $template->render('contact.twig');
+    case '/proizvodi':
+        echo $template->render('proizvodi.twig');
+        break;
+    case '/cenovnik':
+        echo $template->render('cenovnik.twig');
+        break;
+    case '/dostava':
+        echo $template->render('dostava.twig');
+        break;
+    case '/online-kupovina':
+        echo $template->render('online_kupovina.twig');
+        break;
+    case '/uputstvo':
+        echo $template->render('uputstvo.twig');
+        break;
+    case '/galerija':
+        echo $template->render('galerija.twig');
+        break;
+    case '/kontakt':
+        echo $template->render('kontakt.twig');
         break;
     default:
-        echo $template->render('homepage.twig', array(
-            'title' => 1
-        ));
+        echo $template->render('404.twig');
         break;
 }
 
